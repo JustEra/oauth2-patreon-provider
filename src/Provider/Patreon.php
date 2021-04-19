@@ -16,7 +16,8 @@ class Patreon extends AbstractProvider
      *
      * @var string
      */
-    public $apiDomain = 'https://www.patreon.com';
+    public $oauthBaseUrl = 'https://www.patreon.com/oauth2/';
+    public $apiBaseUrl = 'https://www.patreon.com/api/oauth2/';
 
     /**
      * Get authorization URL to begin OAuth flow
@@ -25,7 +26,7 @@ class Patreon extends AbstractProvider
      */
     public function getBaseAuthorizationUrl()
     {
-        return $this->apiDomain.'/oauth2/authorize';
+        return $this->oauthBaseUrl .'authorize';
     }
 
     /**
@@ -37,7 +38,7 @@ class Patreon extends AbstractProvider
      */
     public function getBaseAccessTokenUrl(array $params)
     {
-        return $this->apiDomain.'/oauth2/token';
+        return $this->apiBaseUrl .'token';
     }
 
     /**
@@ -49,7 +50,7 @@ class Patreon extends AbstractProvider
      */
     public function getResourceOwnerDetailsUrl(AccessToken $token)
     {
-        return $this->apiDomain.'/users/@me';
+        return $this->apiBaseUrl .'api/current_user';
     }
 
     /**
@@ -75,10 +76,7 @@ class Patreon extends AbstractProvider
      */
     protected function getDefaultScopes()
     {
-        return [
-            'identity',
-            'identity[email]'
-        ];
+        return ['users'];
     }
 
     /**

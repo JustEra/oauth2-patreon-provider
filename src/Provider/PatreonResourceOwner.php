@@ -22,7 +22,7 @@ class PatreonResourceOwner implements ResourceOwnerInterface
      */
     public function __construct(array $response = array())
     {
-        $this->response = $response;
+        $this->response = $response['data'];
     }
 
     /**
@@ -42,29 +42,10 @@ class PatreonResourceOwner implements ResourceOwnerInterface
      */
     public function getUsername()
     {
-        return $this->getValueByKey($this->response, 'username');
+        return $this->getValueByKey($this->response['attributes'], 'vanity');
     }
 
-    /**
-     * Get resource owner discriminator
-     *
-     * @return string|null
-     */
-    public function getDiscriminator()
-    {
-        return $this->getValueByKey($this->response, 'discriminator');
-    }
-
-    /**
-     * Get resource owner avatar hash
-     *
-     * @return string|null
-     */
-    public function getAvatarHash()
-    {
-        return $this->getValueByKey($this->response, 'avatar');
-    }
-
+    
     /**
      * Get resource owner verified flag
      *
@@ -72,7 +53,7 @@ class PatreonResourceOwner implements ResourceOwnerInterface
      */
     public function getVerified()
     {
-        return $this->getValueByKey($this->response, 'verified', false);
+        return $this->getValueByKey($this->response['attributes'], 'is_email_verified', false);
     }
 
     /**
@@ -82,7 +63,7 @@ class PatreonResourceOwner implements ResourceOwnerInterface
      */
     public function getEmail()
     {
-        return $this->getValueByKey($this->response, 'email');
+        return $this->getValueByKey($this->response['attributes'], 'email');
     }
 
     /**
