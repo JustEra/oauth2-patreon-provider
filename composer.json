@@ -1,0 +1,12 @@
+{
+    "name": "justera/oauth2-patreon-provider",
+    "require": {
+        "league/oauth2-client": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "JustEra\\OAuth2\\Client\\": "src/"
+        }
+    }
+}
+
